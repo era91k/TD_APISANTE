@@ -1,0 +1,27 @@
+# Format du fichier Compose
+version: '1.0'
+
+# Liste des conteneurs de notre application
+services:
+
+    # Service de la base de donnée
+    db:
+        image: mongo
+        container_name: mongo_sante_c
+        # Redémarre automatiquement le conteneur en cas de redémarrage du serveur
+        restart: always
+
+    # Service de l'application Web
+    app:
+        # Se base sur l'image myapp construit depuis le Dockerfile
+        image: app2
+        container_name: api_sante_c
+        restart: always
+        # Mapping du port 8000 sur le port 80
+        ports:
+            - 3000:3000
+        # Définit un dépendance entre le service app et db
+        # -> le service db est démarré avec le service app
+        # -> le service app est arrêté avant le service app
+        depends_on:
+            - db

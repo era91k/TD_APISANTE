@@ -4,7 +4,7 @@ from pymongo import MongoClient
 
 app = FastAPI()
 # 1. Établir une connexion avec MongoDB
-client = MongoClient("mongo_sante")
+client = MongoClient("mongo_sante_c")
 
 # 2. Sélectionner une base de données
 db = client.databases
